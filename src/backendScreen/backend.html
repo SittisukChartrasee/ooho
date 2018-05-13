@@ -113,17 +113,18 @@
         </nav>
       </div>
 
-      
-
       <div class="wrapperUpload">
-        <div class="container">
-          <div class="panel" style="width: 10.333%;">
+  
+        <div id="picture" style="position:absolute; top: 0; overflow: hidden; background-color: #cccccc; height: 100%; width: 100%;"></div>
+        
+        <div class="container" style="position: relative;">
+          <div id="panel" class="panel" style="width: 10.333%;">
             <label for="fileInput">
               <form action="" class="image-select" data-droppable="">
                 <input id="fileInput" type="file" data-droppable-input=""/>
-                <i class="fa fa-camera fa-2x image-select__icon"></i>
+                <i class="fa fa-camera fa-2x image-select__icon"></i>                
                 <div class="image-select__message"></div>
-                <div id="picture"></div>
+                <div id=img></div>
                 <div class="bg-image aspect-square"
                   style="background-image: url('../../images/blog/register.png');" data-droppable-image=""></div>
               </form>
@@ -133,7 +134,7 @@
         </div>
 
         <div class="container" style="position: relative; height: 103px">
-            <input id="fieldInput" type="text" placeholder="Write Main Title ..." value="โคโยตี้ไลท์ รวมมิตร โปรเจ็กต์เบลอแอปเปิล"/>
+            <input style="font-size: 15px!important" id="fieldInput" type="text" placeholder="Write Main Title ..." value="โคโยตี้ไลท์ รวมมิตร โปรเจ็กต์เบลอแอปเปิล"/>
         </div>
       </div>
     </section>
@@ -378,7 +379,7 @@
                 </div>
             </div>
         </div>
-        <div class="marginฺBottom200"></div>
+        <div class="marginBottom200"></div>
     </section>
 
     <div class="modal">
