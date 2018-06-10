@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/PgwSlider/2.3.1/pgwslider.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/theme.css">
+    <style>
+        .btn {
+          border: none;
+          width: 62px;
+        }
+      </style>
   </head>
   <body>
     <section class="hero is-info is-large">
@@ -680,6 +686,11 @@
     }
   }
 
+  const dropdown = () => {
+    var dropdown = document.querySelector('.dropdown');
+      dropdown.classList.toggle('is-active');
+  }
+
   const getEleMenuActiveUser = (name, picture) => `
       <div class="hero-head">
         <nav class="navbar">
@@ -726,18 +737,37 @@
                       <p class="font__colorBlack"><u><b id="username">${name}</b></u></p>
                     </a>
                   </span>
-                  <span class="navbar-item">
+                  <span class="navbar-item" style="margin-right: -6px;">
                     <span class="line"></span>
                     <a class="is-inverted">
                       <img src="images/icon/Bell.png" alt="" style="width: 30px;margin-top: 5px;">
                     </a>
                   </span>
-                  <span class="navbar-item">
-                    <span class="line"></span>
-                    <a class="is-inverted" style="font-size: 26px;">
-                      <i class="fa fa-cog font__colorBlack" aria-hidden="true"></i>
-                    </a>
-                  </span>
+                  <div class="dropdown" style="z-index: 1000">
+                    <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                      <div class="dropdown-content">
+                        <!-- <div class="dropdown-item">
+                          <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+                        </div>
+                        <hr class="dropdown-divider"> -->
+                        <a href="#" onclick="console.log('edit profile')" class="dropdown-item">
+                          Edit Profile
+                        </a> 
+                        <hr class="dropdown-divider">
+                        <a href="#" onclick="logout()" class="dropdown-item">
+                          <font color="red"><b>Log out</b></font>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <button onclick="dropdown()" class="btn" aria-haspopup="true" aria-controls="dropdown-menu2">
+                    <span class="navbar-item">
+                      <span class="line"></span>
+                      <a class="is-inverted" style="font-size: 26px;">
+                        <i class="fa fa-cog font__colorBlack" aria-hidden="true"></i>
+                      </a>
+                    </span>
+                  </button>
                   <span class="navbar-item">
                     <span class="line"></span>
                     <a class="is-inverted">
