@@ -86,26 +86,74 @@
   </section>
 </body>
 </html>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="js/Initialize.js"></script>
 <script src="js/helper.js"></script>
 <script src="js/providers.js"></script>
+<script src="env.js"></script>
 <script>
+
+  window.onload = function() {
+    webAuth.parseHash(function(err, authResult) {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        setSession(authResult)
+        var accessToken = localStorage.getItem('access_token')
+        
+        webAuth.client.userInfo(accessToken, function(err, profile) {
+        console.log('profile : ', profile)
+        if (profile) {
+          localStorage.setItem('profile', JSON.stringify(profile))
+        }
+      });
+      }
+    })
+  }
+
+  function setSession(authResult) {
+    // Set the time that the Access Token will expire at
+    var expiresAt = JSON.stringify(
+      authResult.expiresIn * 1000 + new Date().getTime()
+    );
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+  }
+
+  var webAuth = new auth0.WebAuth({
+    domain: env.AUTH0_DOMAIN,
+    clientID: env.AUTH0_CLIENT_ID,
+    redirectUri: env.AUTH0_CALLBACK_URL,
+    audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
+    responseType: 'token id_token',
+    scope: 'openid profile email'
+  });
+
   signInWithProvider = (id) => {
     switch (id) {
       case 'facebook':
-        signinWithFacebook()
-        console.log(signinWithFacebook());
+        // signinWithFacebook()
+        // console.log(signinWithFacebook());
+        
+        webAuth.authorize({
+          connection: 'facebook',
+        });
         break;
 
       case 'twitter':
-        signinWithTwitter();
+        // signinWithTwitter();
+        webAuth.authorize({
+          connection: 'twitter',
+        });
         break;
 
       case 'google':
-        signinWithGoogle();
-        console.log(signinWithGoogle());
+        // signinWithGoogle();
+        // console.log(signinWithGoogle());
+        webAuth.authorize({
+          connection: 'google-oauth2',
+        });
         break;
 
       default:
@@ -120,4 +168,6 @@
         }
     }
   }
+
+
 </script>
