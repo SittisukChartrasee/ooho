@@ -663,8 +663,6 @@
 </html>
 <script src="js/Initialize.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PgwSlider/2.3.1/pgwslider.js"></script>
 <script src="js/helper.js"></script>
 <script type="text/javascript">
   window.onload = () => {
@@ -680,7 +678,6 @@
       const Data = getEleMenuActiveUser(profile.given_name, profile.picture)
       document.getElementById('menu').innerHTML = Data
     }
-    
   }
 
   const getEleMenuActiveUser = (name, picture) => `
@@ -700,7 +697,7 @@
             <div id="navMenuTransparentExample" class="navbar-menu">
               <div class="navbar-start">
                 <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="navbar-link brown padding__LeftRight" href="#!"> <!-- is-active -->
+                  <a class="navbar-link brown padding__LeftRight" href="src/homeScreen/home.html"> <!-- is-active -->
                     Home
                   </a>
                 </div>
