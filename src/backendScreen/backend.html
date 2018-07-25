@@ -460,22 +460,25 @@
     $('#emojicon_charac').html(dataStructionSimple)
     $('#emojicon_charac a').click(function() {
       const smiley = $(this).attr('title')
-      addToTextArea(smiley, 'des');
+      addToTextArea(smiley);
     })
     $('#emojicon_travel').html(dataStructionTravel)
     $('#emojicon_travel a').click(function() {
       const smiley = $(this).attr('title')
-      addToTextArea(smiley, 'des');
+      addToTextArea(smiley);
     })
   }
 
-  const addToTextArea = (str, id) => {
-    const TextArea = document.getElementById(id)
-    const val = TextArea.value
-    const before = val.substring(0, TextArea.selectionStart)
-    const after = val.substring(TextArea.selectionEnd, val.length)
-    TextArea.value = before + str + after
-  }
+  // const addToTextArea = (str, id) => {
+  //   const TextArea = document.getElementById(id)
+  //   const val = TextArea.value
+  //   const before = val.substring(0, TextArea.selectionStart)
+  //   const after = val.substring(TextArea.selectionEnd, val.length)
+  //   TextArea.value = before + str + after
+  // }
+
+  const addToTextArea = (str) => CKEDITOR.instances.des.insertHtml(str)
+
 
   const insertImage = () => {
     $('#labelImage').toggle();
