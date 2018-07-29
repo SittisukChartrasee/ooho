@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sittisuk/ooho.git"
+    "url": "git+https://github.com/SittisukChartrasee/ooho.git"
   },
   "author": "sittisuk",
   "license": "ISC",
@@ -21,9 +21,9 @@
     "soap": "^0.24.0"
   },
   "bugs": {
-    "url": "https://github.com/sittisuk/ooho/issues"
+    "url": "https://github.com/SittisukChartrasee/ooho/issues"
   },
-  "homepage": "https://sittisuk.github.io/ooho/",
+  "homepage": "https://sittisukchartrasee.github.io/ooho/",
   "devDependencies": {
     "serve": "^5.1.5"
   }
