@@ -41,7 +41,9 @@
         }
       </style>
   </head>
-  <body>
+  <body style="position: relative;">
+    <div onclick="backgroundToggle('close')" id="labelEmotion2" style="position: absolute; top: 0;background-color: rgba(0, 0, 0, 0.753); width: 100%; height: 100%; display: none; z-index: 4000;"></div>
+
     <section class="hero is-info is-large">
       <div id="menu">
         <div class="hero-head">
@@ -461,39 +463,9 @@
       const soure = `<img src="${URL.createObjectURL(this.files[0])}" />`
       CKEDITOR.instances.des.insertHtml(soure)
       $('#labelImage').css('display', 'none')
+      backgroundToggle('close')
     }
   }
-
-  const onCheckSizeImage = () => { // not use
-    const x = document.getElementById('Thefile')
-    let txt = ""
-    if ('files' in x) {
-      if (x.files.length == 0) {
-        txt = "Select one or more files.";
-      } else {
-        for (let i = 0; i < x.files.length; i++) {
-          txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-          let file = x.files[i];
-          if ('name' in file) {
-            txt += "name: " + file.name + "<br>"
-          }
-          if ('size' in file) {
-            txt += "size: " + file.size + " bytes <br>";
-          }
-        }
-      }
-    } 
-    else {
-      if (x.value == "") {
-        txt += "Select one or more files.";
-      } else {
-        txt += "The files property is not supported by your browser!";
-        txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
-      }
-    }
-    return txt
-  }
-  
 
   const getIcon = icon => icon.map(data => data)
   const getSplit = icon => icon.split(' ')
@@ -520,14 +492,6 @@
 
   const addToTextArea = (str) => CKEDITOR.instances.des.insertHtml(str)
 
-
-  const insertImage = () => {
-    $('#labelImage').toggle();
-
-    $('#labelEmotion').css('display', 'none');
-    $('#labelPara').css('display', 'none');
-  }
-
   const performClick = (elemId) => {
     var elem = document.getElementById(elemId);
     if(elem && document.createEvent) {
@@ -537,17 +501,35 @@
     }
   }
 
+  const insertImage = () => {
+    $('#labelImage').toggle();
+    backgroundToggle('open')
+
+    $('#labelEmotion').css('display', 'none');
+    $('#labelPara').css('display', 'none');
+  }
   const insertEmotion = () => {
     $('#labelEmotion').toggle();
+    backgroundToggle('open')
 
     $('#labelImage').css('display', 'none');
     $('#labelPara').css('display', 'none');
   }
   const insertPara = () => {
     $('#labelPara').toggle();
-
+    backgroundToggle('open')
+    
     $('#labelEmotion').css('display', 'none');
     $('#labelImage').css('display', 'none');
+  }
+  const backgroundToggle = (key) => {
+    if (key === 'close') {
+      $('#labelPara').css('display', 'none');
+      $('#labelEmotion').css('display', 'none');
+      $('#labelImage').css('display', 'none');
+    }
+
+    $('#labelEmotion2').toggle();
   }
 
   const openEmo = (tage) => {
@@ -663,6 +645,36 @@
         </nav>
       </div>
   `
+
+  const onCheckSizeImage = () => { // not use
+    const x = document.getElementById('Thefile')
+    let txt = ""
+    if ('files' in x) {
+      if (x.files.length == 0) {
+        txt = "Select one or more files.";
+      } else {
+        for (let i = 0; i < x.files.length; i++) {
+          txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+          let file = x.files[i];
+          if ('name' in file) {
+            txt += "name: " + file.name + "<br>"
+          }
+          if ('size' in file) {
+            txt += "size: " + file.size + " bytes <br>";
+          }
+        }
+      }
+    } 
+    else {
+      if (x.value == "") {
+        txt += "Select one or more files.";
+      } else {
+        txt += "The files property is not supported by your browser!";
+        txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+      }
+    }
+    return txt
+  }
 
   const _onSaveContent = () => {
     const data = {
