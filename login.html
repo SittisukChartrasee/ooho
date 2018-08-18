@@ -91,7 +91,6 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="js/ServerTag.js"></script>
 <script src="js/helper.js"></script>
-<script src="js/providers.js"></script>
 <script src="env.js"></script>
 <script>
 
@@ -130,7 +129,7 @@
     audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile email'
-  });
+  })
 
   signInWithProvider = (id) => {
     switch (id) {
